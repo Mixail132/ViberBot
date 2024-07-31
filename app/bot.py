@@ -18,6 +18,7 @@ def incoming():
         print(viber_request.user.id)
     return Response(status=200)
 
+
 @app.route("/")
 def checking():
     return "Hello, World!"
