@@ -1,41 +1,37 @@
 from viberbot.api.messages.text_message import TextMessage
-from dotenv import load_dotenv
-import os
 from viberbot import Api
 from viberbot.api.bot_configuration import BotConfiguration
+from vars import BotVars
 
-load_dotenv()
-
-viber_webhook = os.getenv("VIBER_WEBHOOK")
-viber_botname = os.getenv("VIBER_BOTNAME")
-viber_avatar = os.getenv("VIBER_AVATAR")
-viber_token = os.getenv("VIBER_TOKEN")
-
+botvars = BotVars()
 bot_config = BotConfiguration(
-    name=viber_botname,
-    avatar=viber_avatar,
-    auth_token=viber_token
+    name=botvars.bot_configs["BOT_NAME"],
+    avatar=botvars.bot_configs["BOT_AVATAR"],
+    auth_token=botvars.bot_configs["BOT_TOKEN"]
 )
+
 viber = Api(bot_config)
 
-def sethook():
-    viber.set_webhook(viber_webhook)
-#
-# def to_viber(msg):
-#     msgtext = TextMessage(text=msg)
-#     for i in viber_users.values():
-#         try:
-#             viber.send_messages(i, [msgtext])
-#         except:
-#             pass
-#
-#
-# if __name__ == "__main__":
-#     msg = "Проверка работы Viber!"
-#     msgtext = TextMessage(text=msg)
-#     for i in viber_users.values():
-#         try:
-#             viber.send_messages(i, [msgtext])
-#         except:
-#             pass
-#     # sethook()
+
+def set_hook():
+    viber.set_webhook(botvars.bot_configs["BOT_WEBHOOK"])
+
+
+def bot_message(msg):
+    msgtext = TextMessage(text=msg)
+    for bot_id in botvars.bot_users.values():
+        try:
+            viber.send_messages(bot_id, [msgtext])
+        except:
+            pass
+
+
+if __name__ == "__main__":
+    msg = "Проверка работы Viber!"
+    msgtext = TextMessage(text=msg)
+    for bot_id in botvars.bot_users.values():
+        try:
+            viber.send_messages(bot_id, [msgtext])
+        except:
+            pass
+#     # set_hook()
