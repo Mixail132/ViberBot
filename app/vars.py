@@ -1,4 +1,5 @@
 import configparser
+from pathlib import Path
 
 
 class IniSection(configparser.ConfigParser):
@@ -8,9 +9,11 @@ class IniSection(configparser.ConfigParser):
 
 
 class BotVars:
+    ini_root = Path(__file__).parent.resolve()
+    ini_file = ini_root / "vars.ini"
     def __init__(self):
         config_sections = IniSection()
-        config_sections.read("vars.ini", "utf-8")
+        config_sections.read(self.ini_file, "utf-8")
         parser = config_sections["VARS"].parser
         self.bot_configs = {
             par_name.upper(): par_value
