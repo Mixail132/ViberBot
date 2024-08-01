@@ -3,25 +3,21 @@ from viberbot import Api
 from viberbot.api.bot_configuration import BotConfiguration
 from vars import BotVars
 
-botvars = BotVars()
+bot_vars = BotVars()
 bot_config = BotConfiguration(
-    name=botvars.bot_configs["BOT_NAME"],
-    avatar=botvars.bot_configs["BOT_AVATAR"],
-    auth_token=botvars.bot_configs["BOT_TOKEN"]
+    name=bot_vars.bot_configs["BOT_NAME"],
+    avatar=bot_vars.bot_configs["BOT_AVATAR"],
+    auth_token=bot_vars.bot_configs["BOT_TOKEN"]
 )
 
 viber = Api(bot_config)
 
 
-def set_hook():
-    viber.set_webhook(botvars.bot_configs["BOT_WEBHOOK"])
-
-
-def bot_message(msg):
-    msgtext = TextMessage(text=msg)
-    for bot_id in botvars.bot_users.values():
+def bot_message(messg):
+    msg_text = TextMessage(text=messg)
+    for bot_id in bot_vars.bot_users.values():
         try:
-            viber.send_messages(bot_id, [msgtext])
+            viber.send_messages(bot_id, [msg_text])
         except:
             pass
 
@@ -29,9 +25,8 @@ def bot_message(msg):
 if __name__ == "__main__":
     msg = "Проверка работы Viber!"
     msgtext = TextMessage(text=msg)
-    for bot_id in botvars.bot_users.values():
+    for sender_id in bot_vars.bot_users.values():
         try:
-            viber.send_messages(bot_id, [msgtext])
+            viber.send_messages(sender_id, [msgtext])
         except:
             pass
-#     # set_hook()
