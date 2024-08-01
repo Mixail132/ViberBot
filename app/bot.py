@@ -18,7 +18,7 @@ app = Flask(__name__)
 #         print(viber_request.user.id)
 #     return Response(status=200)
 
-@app.route("/")
+@app.route("/viber")
 def incoming():
     return "Helo world!"
 
