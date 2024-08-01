@@ -8,19 +8,20 @@ from flask import Flask, request, Response
 app = Flask(__name__)
 
 
-# @app.route("/", methods=["POST"])
-# def incoming():
-#     viber_request = viber.parse_request(request.get_data())
-#     if isinstance(viber_request, ViberMessageRequest):
-#         message = viber_request.message
-#         viber.send_messages(viber_request.sender.id, [message])
-#     elif isinstance(viber_request, ViberConversationStartedRequest):
-#         print(viber_request.user.id)
-#     return Response(status=200)
-
-@app.route("/viber")
+@app.route("/viber", methods=["POST"])
 def incoming():
-    return "Helo world!"
+    viber_request = viber.parse_request(request.get_data())
+    if isinstance(viber_request, ViberMessageRequest):
+        message = viber_request.message
+        viber.send_messages(viber_request.sender.id, [message])
+    elif isinstance(viber_request, ViberConversationStartedRequest):
+        print(viber_request.user.id)
+    return Response(status=200)
+
+
+@app.route("/")
+def checking():
+    return "My Viber Bot is working"
 
 
 if __name__ == "__main__":
