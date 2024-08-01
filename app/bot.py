@@ -8,7 +8,7 @@ from flask import Flask, request, Response
 app = Flask(__name__)
 
 
-@app.route("/viber", methods=["POST"])
+@app.route("/", methods=["POST"])
 def incoming():
     viber_request = viber.parse_request(request.get_data())
     if isinstance(viber_request, ViberMessageRequest):
