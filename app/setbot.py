@@ -2,7 +2,7 @@ from config import viber, bot_vars
 
 
 def set_hook():
-    viber.set_webhook(bot_vars.bot_configs["BOT_WEBHOOK"])
+    viber.set_webhook(bot_vars.configs["BOT_WEBHOOK"])
 
 
 def unset_hook():

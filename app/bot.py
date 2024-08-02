@@ -1,4 +1,4 @@
-from config import viber
+from config import viber, bot_vars
 from viberbot.api.viber_requests import (
     ViberMessageRequest,
     ViberConversationStartedRequest)
@@ -15,7 +15,7 @@ def incoming():
         message = viber_request.message
         viber.send_messages(viber_request.sender.id, [message])
     elif isinstance(viber_request, ViberConversationStartedRequest):
-        print(viber_request.user.id)
+        viber.send_messages(bot_vars.admin, [viber.user.id])
     return Response(status=200)
 
 
