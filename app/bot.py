@@ -8,7 +8,7 @@ from flask import Flask, request, Response
 app = Flask(__name__)
 
 
-@app.route("/viber", methods=["POST"])
+@app.route("/bot", methods=["POST"])
 def incoming():
     viber_request = viber.parse_request(request.get_data())
     if isinstance(viber_request, ViberMessageRequest):
@@ -19,7 +19,7 @@ def incoming():
     return Response(status=200)
 
 
-@app.route("/")
+@app.route("/viber")
 def checking():
     return "My Viber Bot is working"
 
