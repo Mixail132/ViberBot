@@ -15,7 +15,7 @@ def incoming():
         message = viber_request.message
         viber.send_messages(viber_request.sender.id, [message])
     elif isinstance(viber_request, ViberConversationStartedRequest):
-        viber.send_messages(bot_vars.admin, [viber.user.id])
+        viber.send_messages(bot_vars.admin, [viber_request.user.id])
     return Response(status=200)
 
 
