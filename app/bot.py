@@ -1,7 +1,7 @@
 from config import viber, bot_vars
-from viberbot.api.viber_requests import (
-    ViberMessageRequest,
-    ViberConversationStartedRequest)
+from viberbot.api.viber_requests import ViberMessageRequest
+from viberbot.api.viber_requests import ViberConversationStartedRequest
+from viberbot.api.messages.text_message import TextMessage
 from flask import Flask, request, Response
 
 
@@ -14,9 +14,9 @@ def incoming():
     if isinstance(viber_request, ViberMessageRequest):
         message = viber_request.message
         viber.send_messages(viber_request.sender.id, [message])
-        viber.send_messages(bot_vars.admin, [viber_request.sender.id])
     elif isinstance(viber_request, ViberConversationStartedRequest):
-        viber.send_messages(bot_vars.admin, [viber_request.user.id])
+        message = TextMessage(text=viber_request.user.id)
+        viber.send_messages(bot_vars.admin, [message])
     return Response(status=200)
 
 
