@@ -5,9 +5,9 @@ from vars import BotVars
 
 bot_vars = BotVars()
 bot_config = BotConfiguration(
-    name=bot_vars.configs["BOT_NAME"],
-    avatar=bot_vars.configs["BOT_AVATAR"],
-    auth_token=bot_vars.configs["BOT_TOKEN"]
+    name=bot_vars.configs["bot_name"],
+    avatar=bot_vars.configs["bot_avatar"],
+    auth_token=bot_vars.configs["bot_token"]
 )
 
 viber = Api(bot_config)
