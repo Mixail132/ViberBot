@@ -13,20 +13,7 @@ bot_config = BotConfiguration(
 viber = Api(bot_config)
 
 
-def bot_message(messg):
-    msg_text = TextMessage(text=messg)
-    for bot_id in bot_vars.users.values():
-        try:
-            viber.send_messages(bot_id, [msg_text])
-        except:
-            pass
-
-
 if __name__ == "__main__":
-    msg = "Проверка работы Viber!"
-    msgtext = TextMessage(text=msg)
-    for sender_id in bot_vars.users.values():
-        try:
-            viber.send_messages(sender_id, [msgtext])
-        except:
-            pass
+    msg = TextMessage(text="Checking the Viber Bot!")
+    sender_id = bot_vars.users["admin"]
+    viber.send_messages(sender_id, [msg])
