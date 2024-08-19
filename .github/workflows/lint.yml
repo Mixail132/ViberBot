@@ -21,7 +21,7 @@ jobs:
         pip install -r requirements.txt
     - name: Analysing the code with pylint
       run: |
-        pylint --rcfile . $(git ls-files '*.py')
+        pylint --rcfile $(git ls-files '*.py')
     - name: Analysing the code with isort
       run: |
         isort -c $(git ls-files '*.py')
