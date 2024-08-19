@@ -1,9 +1,12 @@
+""" The bot configuration settings. """
+
 from viberbot.api.messages.text_message import TextMessage
 from viberbot import Api
 from viberbot.api.bot_configuration import BotConfiguration
 from vars import BotVars
 
 bot_vars = BotVars()
+
 bot_config = BotConfiguration(
     name=bot_vars.configs["bot_name"],
     avatar=bot_vars.configs["bot_avatar"],
