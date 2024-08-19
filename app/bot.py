@@ -1,4 +1,5 @@
 """ The Flask application to handle incoming requests to the bot. """
+
 from config import viber, bot_vars
 from viberbot.api.viber_requests import ViberMessageRequest
 from viberbot.api.viber_requests import ViberConversationStartedRequest
