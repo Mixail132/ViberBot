@@ -16,8 +16,8 @@ class IniSection(configparser.ConfigParser):
 class BotVars:
     """ Reads and sets the variables from the configuration file. """
 
-    @staticmethod
-    def read_config():
+    # @staticmethod
+    def read_config(self):
         """ Reads the variables from the configuration file. """
         ini_root = Path(__file__).parent.resolve()
         ini_file = ini_root / "vars.ini"
